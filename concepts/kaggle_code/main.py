@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 import tensorflow as tf
-import tf2_0_baseline_w_bert as tf2baseline
-
+#import tf2_0_baseline_w_bert as tf2baseline
+import tf2 as tf2baseline # Oliviera's script
 from bert import modeling
 from bert import optimization
 from bert import  tokenization
