@@ -1,0 +1,2 @@
+Tensorflow is an open source framework for machine learning
+TF Data is API enables you to build complex input pipelines

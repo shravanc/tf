@@ -6,6 +6,11 @@ import tensorflow as tf
 import tensorflow_hub as hub
 from datetime import datetime
 
+
+gpus = tf.config.experimental.list_physical_devices('GPU') 
+for gpu in gpus:
+    tf.config.experimental.set_memory_growth(gpu, True)
+
 import bert
 from bert import run_classifier
 from bert import optimization
@@ -61,11 +66,12 @@ def only_load_datasets():
 
 
 train, test = only_load_datasets()
+#train, test = download_and_load_datasets()
 
 
 
-train = train.sample(5000)
-test = test.sample(5000)
+train = train.sample(50)
+test = test.sample(50)
 
 print(train.columns)
 
@@ -226,9 +232,9 @@ def model_fn_builder(num_labels, learning_rate, num_train_steps,
 
 # Compute train and warmup steps from batch size
 # These hyperparameters are copied from this colab notebook (https://colab.sandbox.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb)
-BATCH_SIZE = 32
+BATCH_SIZE = 1
 LEARNING_RATE = 2e-5
-NUM_TRAIN_EPOCHS = 3.0
+NUM_TRAIN_EPOCHS = 2.0
 # Warmup is a period of time where hte learning rate 
 # is small and gradually increases--usually helps training.
 WARMUP_PROPORTION = 0.1
