@@ -1,3 +1,6 @@
+# https://www.tensorflow.org/guide/data
+# https://www.tensorflow.org/api_docs/python/tf/data/Dataset
+
 import tensorflow as tf
 
 print(tf.__version__)
@@ -159,4 +162,10 @@ for window in dataset:
 
 
 
-
+# Apply
+dataset = tf.data.Dataset.range(100)
+def dataset_fn(ds):
+  return ds.filter(lambda x: x<5)
+dataset = dataset.apply(dataset_fn)
+print(list(dataset.as_numpy_iterator()))
+  
