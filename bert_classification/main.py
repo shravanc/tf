@@ -16,7 +16,7 @@ from bert import tokenization
 print("---1---")
 
 OUTPUT_DIR = '/home/shravan/tf/saved_model'
-
+BASE_PATH  = '/home/shravan/tf/local_datasets'
 from tensorflow import keras
 import re
 import os
@@ -29,7 +29,7 @@ import os
 from lib.bert_utils import load_directory_data, load_dataset, download_and_load_datasets
 
 force_download = False
-train, test = download_and_load_datasets(force_download)
+train, test = download_and_load_datasets(force_download, BASE_PATH)
 
 
 train = train.sample(5000)
@@ -136,7 +136,7 @@ train_input_fn = bert.run_classifier.input_fn_builder(
 #===========Training===========
 print(f'Beginning Training!')
 current_time = datetime.now()
-estimator.train(input_fn=train_input_fn, max_steps=num_train_steps)
+#estimator.train(input_fn=train_input_fn, max_steps=num_train_steps)
 print("Training took time-->", datetime.now() - current_time)
 #===========Training===========
 

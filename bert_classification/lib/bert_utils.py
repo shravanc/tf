@@ -9,6 +9,7 @@ from bert import run_classifier
 from bert import optimization
 from bert import tokenization
 
+
 def load_directory_data(directory):
   data = {}
   data['sentence']  = []
@@ -31,7 +32,7 @@ def load_dataset(directory):
   return pd.concat([pos_df, neg_df]).sample(frac=1).reset_index(drop=True)
 
 
-def download_and_load_datasets(force_download=False):
+def download_and_load_datasets(force_download=False, base_path=""):
   if force_download:
     dataset = tf.keras.utils.get_file(
               fname="aclImb.tar.gz",
@@ -39,8 +40,8 @@ def download_and_load_datasets(force_download=False):
               extract=True
               )
 
-  train_path = "/home/shravan/tf/local_datasets/aclImdb/train"
-  test_path  = "/home/shravan/tf/local_datasets/aclImdb/test"
+  train_path = os.path.join(base_path, "aclImdb", "train") #"/home/shravan/tf/local_datasets/aclImdb/train"
+  test_path  = os.path.join(base_path, "aclImdb", "test")  #"/home/shravan/tf/local_datasets/aclImdb/test"
   train_df   = load_dataset(train_path)
   test_df    = load_dataset(test_path)
 
