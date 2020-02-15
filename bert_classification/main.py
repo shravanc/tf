@@ -1,3 +1,4 @@
+# source ~/tf/bert/bin/activate
 #=================================================IMPORTING========================================================
 
 from sklearn.model_selection import train_test_split
