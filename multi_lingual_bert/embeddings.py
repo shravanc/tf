@@ -1,8 +1,10 @@
 #reference
+# https://blog.tensorflow.org/2018/03/introducing-tensorflow-hub-library.html
 # https://tfhub.dev/tensorflow/bert_multi_cased_L-12_H-768_A-12/1
 # https://www.tensorflow.org/hub
 # https://github.com/tensorflow/models/blob/master/official/nlp/bert/run_classifier.py
 # https://colab.research.google.com/drive/1hMLd5-r82FrnFnBub-B-fVW78Px4KPX1#scrollTo=tU2OpvYrRFNf&forceEdit=true&sandboxMode=true
+# https://colab.research.google.com/github/tensorflow/hub/blob/master/docs/tutorials/text_classification_with_tf_hub.ipynb#scrollTo=_8N3Hx2dyUC-
 
 
 
