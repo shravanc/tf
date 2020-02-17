@@ -5,7 +5,12 @@
 # https://github.com/tensorflow/models/blob/master/official/nlp/bert/run_classifier.py
 # https://colab.research.google.com/drive/1hMLd5-r82FrnFnBub-B-fVW78Px4KPX1#scrollTo=tU2OpvYrRFNf&forceEdit=true&sandboxMode=true
 # https://colab.research.google.com/github/tensorflow/hub/blob/master/docs/tutorials/text_classification_with_tf_hub.ipynb#scrollTo=_8N3Hx2dyUC-
-
+# https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/tf2_text_classification.ipynb#scrollTo=2ew7HTbPpCJH
+# https://www.tensorflow.org/hub/tutorials/text_classification_with_tf_hub
+# https://colab.research.google.com/github/tensorflow/tpu/blob/master/tools/colab/bert_finetuning_with_cloud_tpus.ipynb?hl=ko#scrollTo=tYkaAlJNfhul
+# https://github.com/strongio/keras-bert/blob/master/keras-bert.ipynb
+# https://analyticsindiamag.com/bert-classifier-with-tensorflow-2-0/
+# https://colab.research.google.com/drive/1Zh3cqU0VBk4X0xDkV8ufHYriJMzMRpdT#scrollTo=lZZiyJXyYbJx
 
 
 import tensorflow_hub as hub
