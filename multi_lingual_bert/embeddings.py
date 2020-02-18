@@ -11,6 +11,10 @@
 # https://github.com/strongio/keras-bert/blob/master/keras-bert.ipynb
 # https://analyticsindiamag.com/bert-classifier-with-tensorflow-2-0/
 # https://colab.research.google.com/drive/1Zh3cqU0VBk4X0xDkV8ufHYriJMzMRpdT#scrollTo=lZZiyJXyYbJx
+# https://towardsdatascience.com/bert-in-keras-with-tensorflow-hub-76bcbc9417b
+
+
+# https://machinetalk.org/2019/03/29/neural-machine-translation-with-attention-mechanism/
 
 
 import tensorflow_hub as hub
@@ -21,7 +25,6 @@ FullTokenizer = bert.bert_tokenization.FullTokenizer
 from tensorflow.keras.models import Model
 
 import math
-
 
 max_seq_length = 128
 
