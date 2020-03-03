@@ -25,7 +25,6 @@ print(tf.__version__)
 
 
 #==================================Downloading===========================================
-"""
 http = urllib3.PoolManager()
 url = 'http://www.manythings.org/anki/hin-eng.zip'
 filename = 'hin-eng.zip'
@@ -37,7 +36,6 @@ with http.request('GET', url, preload_content=False) as r, open(zipfilename, 'wb
 print(zipfilename)
 with zipfile.ZipFile(zipfilename, 'r') as zip_ref:
     zip_ref.extractall(path)
-"""
 #==================================Downloading===========================================
 
 #==================================DataPreparation=======================================
@@ -196,7 +194,6 @@ def train_step(inp, targ, enc_hidden):
 #==================================Training==============================================
 
 
-"""
 EPOCHS = 10
 
 for epoch in range(EPOCHS):
@@ -220,10 +217,6 @@ for epoch in range(EPOCHS):
   print('Epoch {} Loss {:.4f}'.format(epoch + 1,
                                       total_loss / steps_per_epoch))
   print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
-
-"""
-
-
 
 
 
