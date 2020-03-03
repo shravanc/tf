@@ -23,19 +23,6 @@ tf.config.experimental.set_memory_growth(gpus[0], True)
 print(tf.__version__)
 #==================================Importing=============================================
 
-"""
-#==================================Downloading===========================================
-http = urllib3.PoolManager()
-url = 'http://www.manythings.org/anki/hin-eng.zip'
-filename = 'hin-eng.zip'
-path = os.getcwd()
-zipfilename = os.path.join(path, filename)
-
-with http.request('GET', url, preload_content=False) as r, open(zipfilename, 'wb') as out_file:       
-    shutil.copyfileobj(r, out_file)
-print(zipfilename)
-with zipfile.ZipFile(zipfilename, 'r') as zip_ref:
-    zip_ref.extractall(path)
 #==================================Downloading===========================================
 """
 http = urllib3.PoolManager()
@@ -64,6 +51,14 @@ path = os.getcwd()
 zipfilename = os.path.join(path, filename)
 extract(path, url, zipfilename)
 
+# Dataset 3
+url = 'https://github.com/shravanc/datasets/blob/master/hin_eng/HindiEnCorp.zip?raw=true'
+filename = 'HindiEnCorp.zip'
+path = os.getcwd()
+zipfilename = os.path.join(path, filename)
+extract(path, url, zipfilename)
+"""
+#==================================Downloading===========================================
 
 #==================================DataPreparation=======================================
 from lib.utils import unicode_to_ascii, preprocess_sentence, create_dataset, create_new_dataset, load_dataset, max_length, convert
@@ -77,15 +72,31 @@ print(preprocess_sentence(sp_sentence).encode('utf-8'))
 path_to_file = os.path.join(os.getcwd(), "parallel_corpora/hin.txt")
 en_1, hi_1 = create_dataset(path_to_file, None)
 
-en_path = os.path.join(os.getcwd(), "hi-en/train.en") #"/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.en"
-hi_path = os.path.join(os.getcwd(), "hi-en/train.hi") #"/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.hi"
+en_path = os.path.join(os.getcwd(), "hi-en/train.en") 
+hi_path = os.path.join(os.getcwd(), "hi-en/train.hi") 
 en_2, hi_2 = create_new_dataset(en_path, hi_path)
 
-en = en_1 + en_2
-hi = hi_1 + hi_2
+en_path = os.path.join(os.getcwd(), "hi-en/test.en") 
+hi_path = os.path.join(os.getcwd(), "hi-en/test.hi") 
+en_3, hi_3 = create_new_dataset(en_path, hi_path)
+
+en_path = os.path.join(os.getcwd(), "hi-en/dev.en") 
+hi_path = os.path.join(os.getcwd(), "hi-en/dev.hi") 
+en_4, hi_4 = create_new_dataset(en_path, hi_path)
+
+en_path = os.path.join(os.getcwd(), "HindiEnCorp/data.en") 
+hi_path = os.path.join(os.getcwd(), "HindiEnCorp/data.hi") 
+en_5, hi_5 = create_new_dataset(en_path, hi_path)
+
+
+en = en_1 + en_2 + en_3 + en_4 + en_5
+hi = hi_1 + hi_2 + en_3 + en_4 + en_5
+
+print(len(en))
+print(len(hi))
 
 # Try experimenting with the size of that dataset
-num_examples = 80000
+num_examples = 350000
 input_tensor, target_tensor, inp_lang, targ_lang = load_dataset(path_to_file, num_examples)
 
 # Calculate max_length of the target tensors
@@ -220,7 +231,7 @@ def train_step(inp, targ, enc_hidden):
   return batch_loss
 #==================================Training==============================================
 
-
+"""
 EPOCHS = 10
 
 for epoch in range(EPOCHS):
@@ -244,7 +255,7 @@ for epoch in range(EPOCHS):
   print('Epoch {} Loss {:.4f}'.format(epoch + 1,
                                       total_loss / steps_per_epoch))
   print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
-
+"""
 
 
 #==================================Evaluate===========================================
@@ -337,7 +348,7 @@ checkpoint.restore(tf.train.latest_checkpoint(checkpoint_dir))
 #==================================RestoreCheckPoint===================================
 
 
-#translate(u'क्या हाल है')
+translate(u'क्या हाल है')
 #translate(u'मैं तुम्हें पसंद करता हूं')
 #translate(u'तूफान उसे निकटतम आदमी हो जाएगा.')
-translate(u'यहाँ नहीं या मेरी दुकान में.')
+#translate(u'यहाँ नहीं या मेरी दुकान में.')
