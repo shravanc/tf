@@ -23,7 +23,7 @@ tf.config.experimental.set_memory_growth(gpus[0], True)
 print(tf.__version__)
 #==================================Importing=============================================
 
-"""
+
 #==================================Downloading===========================================
 http = urllib3.PoolManager()
 url = 'http://www.manythings.org/anki/hin-eng.zip'
@@ -37,33 +37,6 @@ print(zipfilename)
 with zipfile.ZipFile(zipfilename, 'r') as zip_ref:
     zip_ref.extractall(path)
 #==================================Downloading===========================================
-"""
-http = urllib3.PoolManager()
-
-def extract(path, url, zipfilename):
-  with http.request('GET', url, preload_content=False) as r, open(zipfilename, 'wb') as out_file:
-    shutil.copyfileobj(r, out_file)
-
-  print("file--->", zipfilename)
-  with zipfile.ZipFile(zipfilename, 'r') as zip_ref:
-    zip_ref.extractall(path)
-
-
-# Dataset 1
-url = 'https://github.com/shravanc/datasets/blob/master/hin_eng/hi-en.zip?raw=true'
-filename = 'hi-en.zip'
-path = os.getcwd()
-zipfilename = os.path.join(path, filename)
-extract(path, url, zipfilename)
-
-
-# Dataset 2
-url = 'https://github.com/shravanc/datasets/blob/master/hin_eng/parallel_corpora.zip?raw=true'
-filename = 'parallel_corpora.zip'
-path = os.getcwd()
-zipfilename = os.path.join(path, filename)
-extract(path, url, zipfilename)
-
 
 #==================================DataPreparation=======================================
 from lib.utils import unicode_to_ascii, preprocess_sentence, create_dataset, create_new_dataset, load_dataset, max_length, convert
@@ -74,11 +47,11 @@ print(preprocess_sentence(en_sentence))
 print(preprocess_sentence(sp_sentence).encode('utf-8'))
 
 
-path_to_file = os.path.join(os.getcwd(), "parallel_corpora/hin.txt")
+path_to_file = os.path.join(os.getcwd(), "hin.txt")
 en_1, hi_1 = create_dataset(path_to_file, None)
 
-en_path = os.path.join(os.getcwd(), "hi-en/train.en") #"/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.en"
-hi_path = os.path.join(os.getcwd(), "hi-en/train.hi") #"/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.hi"
+en_path = "/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.en"
+hi_path = "/home/shravan/Downloads/indic_languages_corpus/bilingual/hi-en/train.hi"
 en_2, hi_2 = create_new_dataset(en_path, hi_path)
 
 en = en_1 + en_2
