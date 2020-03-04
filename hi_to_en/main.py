@@ -24,7 +24,6 @@ print(tf.__version__)
 #==================================Importing=============================================
 
 #==================================Downloading===========================================
-"""
 http = urllib3.PoolManager()
 
 def extract(path, url, zipfilename):
@@ -57,7 +56,6 @@ filename = 'HindiEnCorp.zip'
 path = os.getcwd()
 zipfilename = os.path.join(path, filename)
 extract(path, url, zipfilename)
-"""
 #==================================Downloading===========================================
 
 #==================================DataPreparation=======================================
@@ -101,7 +99,6 @@ input_tensor, target_tensor, inp_lang, targ_lang = load_dataset(path_to_file, nu
 
 # Calculate max_length of the target tensors
 max_length_targ, max_length_inp = max_length(target_tensor), max_length(input_tensor)
-
 
 # Creating training and validation sets using an 80-20 split
 input_tensor_train, input_tensor_val, target_tensor_train, target_tensor_val = train_test_split(input_tensor, target_tensor, test_size=0.2)
@@ -231,7 +228,6 @@ def train_step(inp, targ, enc_hidden):
   return batch_loss
 #==================================Training==============================================
 
-"""
 EPOCHS = 10
 
 for epoch in range(EPOCHS):
@@ -255,26 +251,18 @@ for epoch in range(EPOCHS):
   print('Epoch {} Loss {:.4f}'.format(epoch + 1,
                                       total_loss / steps_per_epoch))
   print('Time taken for 1 epoch {} sec\n'.format(time.time() - start))
-"""
-
 
 #==================================Evaluate===========================================
 def evaluate(sentence):
   attention_plot = np.zeros((max_length_targ, max_length_inp))
-
   sentence = preprocess_sentence(sentence)
-
-  #inputs = [inp_lang.word_index[i] for i in sentence.split(' ')]
   inputs = []
   for i in sentence.split(' '):
     if i == "":
       break
     wi = inp_lang.word_index.get(i)
-    print("index--->", i)
-    print("class--->", type(inp_lang.word_index.get(i)))
     if wi:
       inputs.append(wi)
-
 
   inputs = tf.keras.preprocessing.sequence.pad_sequences([inputs],
                                                          maxlen=max_length_inp,
@@ -312,24 +300,6 @@ def evaluate(sentence):
 #==================================Evaluate===========================================
 
 
-# function for plotting the attention weights
-def plot_attention(attention, sentence, predicted_sentence):
-  fig = plt.figure(figsize=(10,10))
-  ax = fig.add_subplot(1, 1, 1)
-  ax.matshow(attention, cmap='viridis')
-
-  fontdict = {'fontsize': 14}
-
-  ax.set_xticklabels([''] + sentence, fontdict=fontdict, rotation=90)
-  ax.set_yticklabels([''] + predicted_sentence, fontdict=fontdict)
-
-  ax.xaxis.set_major_locator(ticker.MultipleLocator(1))
-  ax.yaxis.set_major_locator(ticker.MultipleLocator(1))
-
-  plt.show()
-
-
-
 def translate(sentence):
   result, sentence, attention_plot = evaluate(sentence)
 
@@ -337,9 +307,6 @@ def translate(sentence):
   print('Predicted translation: {}'.format(result))
 
   attention_plot = attention_plot[:len(result.split(' ')), :len(sentence.split(' '))]
-  #plot_attention(attention_plot, sentence.split(' '), result.split(' '))
-
-
 
 
 
