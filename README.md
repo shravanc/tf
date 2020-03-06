@@ -12,7 +12,8 @@ https://medium.com/@shravan007.c/classification-using-tensorflow-estimator-942b2
 ## Tensorflow Hub:
 https://medium.com/@shravan007.c/transfer-learning-with-tensorflow-hub-29a4bbff8879
 
-
+## Neural Machine Translation:
+https://medium.com/@shravan007.c/neural-machine-translation-with-attention-and-tensorflow-2-0-6c6d16c829f4
 
 
 
