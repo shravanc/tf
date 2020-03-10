@@ -48,11 +48,13 @@ def generate_pandas_input_fn(file_name, mode=tf.estimator.ModeKeys.EVAL,
                              num_epochs=1,
                              batch_size=100):
 
-    df_dataset = pd.read_csv(file_name, names=HEADER, skiprows=skip_header_lines)
+    #df_dataset = pd.read_csv(file_name, names=HEADER, skiprows=skip_header_lines)
+    df_dataset = pd.read_csv(file_name) #, names=HEADER, skiprows=skip_header_lines)
     print(df_dataset.head())
    
-    x = df_dataset[FEATURE_NAMES].copy()
-    y = df_dataset[TARGET_NAME]
+    x1 = df_dataset[FEATURE_NAMES].copy()
+    x  = x1.apply(lambda x: x.astype('float32'))
+    y  = df_dataset[TARGET_NAME]
   
     print("---x---")
     print(x.head())
@@ -102,7 +104,8 @@ def get_feature_columns():
     
     
     all_numeric_feature_names = NUMERIC_FEATURE_NAMES
-    
+     
+     
     numeric_columns = {feature_name: tf.feature_column.numeric_column(feature_name)
                        for feature_name in all_numeric_feature_names}
 
