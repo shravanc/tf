@@ -27,24 +27,27 @@ print("----")
 
 users_movies   = tf.constant(get_user_movies(), dtype=tf.float32)
 movies_feats  = tf.constant(get_movies_fetures(), dtype=tf.float32)
-print(users_movies)
-print(movies_feats)
+print("user_items----->",users_movies)
+print("item_feats----->",movies_feats)
 
 users_feats = tf.matmul(users_movies, movies_feats)
-print(users_feats)
+print("itermediate_state----->", users_feats)
 
 
 users_feats = users_feats/tf.reduce_sum(users_feats,axis=1,keepdims=True)
-print(users_feats)
+print("users_feats---->", users_feats)
 
 
 
 top_users_features = tf.nn.top_k(users_feats, num_feats)[1]
-print(top_users_features)
+print("top_users_features---->", top_users_features)
 
 
 
 for i in range(num_users):
+    print("--------------inside lop-------------", i)
+    print("--------------inside lop-------------", features)
+    print("--------------inside lop-------------", top_users_features[i])
     feature_names = [features[int(index)] for index in top_users_features[i]]
     print('{}: {}'.format(users[i],feature_names))
 
