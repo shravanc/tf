@@ -41,7 +41,7 @@ def generate_csv_with_different_scaling_method(df, columns=[], generate_file=Fal
   return distributions
 
 
-image_path = "/home/shravan/tf/tf/framework/images"
+image_path = os.path.join(os.getcwd(), 'images')
 all_csv = os.listdir(csv_path)
 """
 Analysing Each scaling method. This will generate an image for two 
@@ -60,7 +60,7 @@ analyse_distribution()
 """
 Analyse clusters for each scaling method
 """
-cluster_path = "/home/shravan/tf/tf/framework/clusters"
+cluster_path = os.path.join(os.getcwd(), 'clusters')
 def cluster_analysis():
   k = 3
   distributions = get_distributions(df)
