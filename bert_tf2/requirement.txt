@@ -1,0 +1,8 @@
+tensorflow==2.2.0-rc1
+bert-for-tf2
+sentencepiece
+pandas
+matplotlib
+seaborn
+sklearn
+tqdm
