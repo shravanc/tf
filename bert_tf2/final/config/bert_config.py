@@ -5,6 +5,7 @@ class BertConfig:
   TRAIN_DATA_PATH = '/home/shravan/python_programs/generate_kannada_movie_reviews/modified_data/train' 
   TEST_DATA_PATH  = '/home/shravan/python_programs/generate_kannada_movie_reviews/modified_data/test'
   CSV_DELIMITER   = '#'
+  CSV_COLUMNS     = ['Reviews', 'Sentiment']
 
   BERT_BASE_PATH  = '/home/shravan/python_programs/bert_leraning/data/'
   BERT_MODEL_NAME = 'multi_cased_L-12_H-768_A-12'
@@ -15,17 +16,25 @@ class BertConfig:
   BERT_VOCAB_FILE = os.path.join(BERT_CKPT_DIR,  'vocab.txt'       )
   
 
-  DATA_COLUMN     = 'word' 
-  LABEL_COLUMN    = 'polarity'
+  DATA_COLUMN     = CSV_COLUMNS[0]
+  LABEL_COLUMN    = CSV_COLUMNS[1]
 
+
+  @classmethod
+  def csv_columns(self):
+    return self.CSV_COLUMNS
+
+  @classmethod
+  def delimiter(self):
+    return self.CSV_DELIMITER
 
   @classmethod
   def train_data_path(self):
-    return TRAIN_DATA_PATH
+    return self.TRAIN_DATA_PATH
 
   @classmethod
   def test_data_path(self):
-    return TEST_DATA_PATH
+    return self.TEST_DATA_PATH
 
   @classmethod
   def vocab_file(self):

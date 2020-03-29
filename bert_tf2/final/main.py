@@ -3,7 +3,8 @@ from config.bert_config import BertConfig
 
 
 ensemble = Ensemble(BertConfig)
-        
+
+ensemble.load_dataset_fn()        
 ensemble.preprocess_fn()
 ensemble.test_preprocess_fn()
 ensemble.build_model_fn()
