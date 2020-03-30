@@ -36,11 +36,42 @@ RANDOM_SEED = 42
 np.random.seed(RANDOM_SEED)
 tf.random.set_seed(RANDOM_SEED)
 
+"""
 URL = '/home/shravan/python_programs/kan.csv'
-train = pd.read_csv(URL)
-test  = pd.read_csv(URL)
-print(train.head())
+URL = '/home/shravan/python_programs/generate_kannada_movie_reviews/test/train_1.csv'
 
+delimiter = '##'
+train = pd.read_csv(URL, sep=delimiter)
+test  = pd.read_csv(URL, sep=delimiter)
+print(train.head())
+"""
+gpus = tf.config.experimental.list_physical_devices('GPU')
+tf.config.experimental.set_memory_growth(gpus[0], True)
+
+
+base_dir = '/home/shravan/python_programs/generate_kannada_movie_reviews/test/'
+train_count = 11
+delimiter = '#'
+def load_datasets():
+  train = pd.DataFrame()
+  for i in range(1, train_count+1):
+    file_path = os.path.join(base_dir, f"train_{i}.csv")
+    print(file_path)
+    train = pd.concat([ train,
+                        pd.read_csv(file_path, sep=delimiter, names = ["word", "polarity"])],
+                        ignore_index=True
+                      )
+
+
+  test_file = os.path.join(  base_dir, f"train_12.csv")
+  test = pd.read_csv(file_path, sep=delimiter, names=["word", "polarity"])
+
+  return train, test
+
+
+train, test = load_datasets()
+print(train.info())
+print(train.head())
 
 chart = sns.countplot(train.polarity, palette=HAPPY_COLORS_PALETTE)
 plt.title("Number of texts per intent")
@@ -58,6 +89,7 @@ bert_config_file = os.path.join(bert_ckpt_dir, "bert_config.json")
 
 
 # Preprocessing
+# Preprocessing
 class IntentDetectionData:
   DATA_COLUMN = 'word'
   LABEL_COLUMN = 'polarity'
@@ -67,15 +99,14 @@ class IntentDetectionData:
     self.max_seq_len = 0
     self.classes = classes
 
-    self.max_seq_len = min(self.max_seq_len, max_seq_len)
-
-
+    #print(train[IntentDetectionData.DATA_COLUMN].str.len().sort_values().index())
     train, test = map(lambda df: df.reindex(df[IntentDetectionData.DATA_COLUMN].str.len().sort_values().index), [train, test])
 
-    # prepare
+
     ((self.train_x, self.train_y), (self.test_x, self.test_y)) = map(self._prepare, [train, test])
-    
-    # pad
+
+    print("max seq_len", self.max_seq_len)
+    self.max_seq_len = min(self.max_seq_len, max_seq_len)
     self.train_x, self.test_x = map(self._pad, [self.train_x, self.test_x])
 
 
@@ -100,8 +131,9 @@ class IntentDetectionData:
       input_ids = input_ids[:min(len(input_ids), self.max_seq_len -2)]
       input_ids = input_ids + [0] * (self.max_seq_len - len(input_ids))
       x.append(np.array(input_ids))
-    
+
     return np.array(x)
+
 
 
 tokenizer = FullTokenizer(vocab_file=os.path.join(bert_ckpt_dir, 'vocab.txt'))
@@ -122,9 +154,10 @@ def create_model(max_seq_len, bert_ckpt_file):
     bert = BertModelLayer.from_params(bert_params, name='bert')
 
   input_ids = keras.layers.Input(shape=(max_seq_len, ), dtype='int32', name='input_ids')
+  print("--------------->", input_ids)
   bert_output = bert(input_ids)
 
-  print('bert shape', bert_output.shape)
+  print('----->bert shape', bert_output.shape)
 
   cls_out = keras.layers.Lambda(lambda seq: seq[:, 0, :])(bert_output)
   cls_out = keras.layers.Dropout(0.5)(cls_out)
@@ -165,10 +198,10 @@ history = model.fit(
   x= data.train_x,
   y=data.train_y,
   validation_split=0.1,
-  batch_size=16,
+  batch_size=8,
   shuffle=True,
   epochs=5,
-  callbacks=[tensorboard_callback]
+  #callbacks=[tensorboard_callback]
 )
 
 

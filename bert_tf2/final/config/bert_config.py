@@ -1,6 +1,8 @@
 import os
+from bert.tokenization.bert_tokenization import FullTokenizer
+from config.base_config import BaseConfig
 
-class BertConfig:
+class BertConfig(BaseConfig):
 
   TRAIN_DATA_PATH = '/home/shravan/python_programs/generate_kannada_movie_reviews/modified_data/train' 
   TEST_DATA_PATH  = '/home/shravan/python_programs/generate_kannada_movie_reviews/modified_data/test'
@@ -18,7 +20,22 @@ class BertConfig:
 
   DATA_COLUMN     = CSV_COLUMNS[0]
   LABEL_COLUMN    = CSV_COLUMNS[1]
+  CLASSES         = [0, 1]
 
+  TOKENIZER       = FullTokenizer(
+                                  vocab_file=BERT_VOCAB_FILE
+                                )
+
+  MAX_LEN         = 128
+
+
+  @classmethod
+  def classes(self):
+    return self.CLASSES
+
+  @classmethod
+  def max_len(self):
+    return self.MAX_LEN
 
   @classmethod
   def csv_columns(self):
@@ -37,5 +54,9 @@ class BertConfig:
     return self.TEST_DATA_PATH
 
   @classmethod
-  def vocab_file(self):
-    return self.BERT_VOCAB_FILE
+  def data_column(self):
+    return self.DATA_COLUMN
+
+  @classmethod
+  def label_column(self):
+    return self.LABEL_COLUMN
