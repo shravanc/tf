@@ -23,7 +23,10 @@ all_columns = list(df.columns)
 Define csv_path and generate csv after performing 
 each scaling on the datasets
 """
-csv_path = "/home/shravan/tf/tf/framework/csv_files/"
+#csv_path = "/home/shravan/tf/tf/framework/csv_files/"
+csv_path = os.path.join(os.getcwd(), 'csv_files') #"/home/shravan/tf/tf/framework/csv_files/"
+image_path = os.path.join(os.getcwd(), 'images')
+all_csv = os.listdir(csv_path)
 def generate_csv_with_different_scaling_method(df, columns=[], generate_file=False):
   
   # gets all scaling method defined in this framework
@@ -40,9 +43,8 @@ def generate_csv_with_different_scaling_method(df, columns=[], generate_file=Fal
 
   return distributions
 
+#generate_csv_with_different_scaling_method(df)
 
-image_path = os.path.join(os.getcwd(), 'images')
-all_csv = os.listdir(csv_path)
 """
 Analysing Each scaling method. This will generate an image for two 
 columns at a time. Columns that need to be examined can be changed
