@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="affd3005-8333-4796-9d8a-20f94916fa15" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../framework/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../framework/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kannada_dataset_v1.tar.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../nlp/movie_review.py" beforeDir="false" afterPath="$PROJECT_DIR$/../nlp/movie_review.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/shravan.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/shravan.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/time_series.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/time_series.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +24,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/tensorflow_certification" />
+    <property name="run.code.analysis.last.selected.profile" value="aDefault" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -37,5 +40,19 @@
       <updated>1590416801986</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="729" y="405" width="518" height="294" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591110234315">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="729" y="405" width="518" height="294" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/67.27.1853.1053@67.27.1853.1053" timestamp="1591110234315" />
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1591111022844">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="771" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1591111022844" />
+    <state x="482" y="187" key="SettingsEditor" timestamp="1591109900848">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="482" y="187" key="SettingsEditor/67.27.1853.1053@67.27.1853.1053" timestamp="1591109900848" />
   </component>
 </project>

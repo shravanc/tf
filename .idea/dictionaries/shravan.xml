@@ -1,10 +1,15 @@
 <component name="ProjectDictionaryState">
   <dictionary name="shravan">
     <words>
+      <w>cuda</w>
       <w>dataset</w>
-      <w>mnist</w>
-      <w>pred</w>
+      <w>datasets</w>
+      <w>logdir</w>
+      <w>ntest</w>
+      <w>ptable</w>
       <w>relu</w>
+      <w>shravan</w>
+      <w>softmax</w>
     </words>
   </dictionary>
 </component>
